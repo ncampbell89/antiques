@@ -38,25 +38,23 @@ if ($isEditing) {
 
 // If user has submitted a form, create a result message
 if ($hasPostData) {
-  if (isset($validationError)) {
-		$messageType = 'error';
-		$message = "Form Validation Error: $validationError";    
-  }
-	elseif ($result) {
-      // if we have a valid result...
-			$messageType = 'success';
-      // use a different success message for edits and adds
-			$message = $isEditing ? 'You edits were successfully saved.' : "New item successfully created. <a href='item.php?itemID=$itemID'>Edit Item</a>.";
-		} else {
-      // if no rows have been affected, issue a warning message
-			$messageType = 'warning';
-			$message = 'No new data was saved.';
-		}
-	} else {
-    // if we do not have a result, it must have been an error
+		  if (isset($validationError)) {
+				$messageType = 'error';
+				$message = "Form Validation Error: $validationError";    
+		  } elseif ($result) {
+			  // if we have a valid result...
+					$messageType = 'success';
+			  // use a different success message for edits and adds
+					$message = $isEditing ? 'You edits were successfully saved.' : "New item successfully created. <a href='item.php?itemID=$itemID'>Edit Item</a>.";
+		  } else {
+			  // if no rows have been affected, issue a warning message
+					$messageType = 'warning';
+					$message = 'No new data was saved.';
+		  }
+  } else {
+	// if we do not have a result, it must have been an error
 		$messageType = 'error';
 		$message = 'Data could not be saved. '.(isset($dbError) ? $dbError : mysqli_error($conn));
-	}
 }
 
 ?><!DOCTYPE html>
@@ -76,10 +74,8 @@ if ($hasPostData) {
     
     <h1><?= $pageTitle; ?></h1>
     
-    <?php
-      // if user has submitted a form, show the message created above
-      if ($hasPostData):
-    ?>
+<!--	if user has submitted a form, show the message created above-->
+    <?php if ($hasPostData): ?>
       <p class="message <?= $messageType; ?>"><?= $message; ?></p>
     <?php endif; ?>
   

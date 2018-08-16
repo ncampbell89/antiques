@@ -6,9 +6,13 @@ $query = "
   WHERE items.itemID=$itemID";
 $result = mysqli_query($conn, $query);
 $item = mysqli_fetch_array($result);
+
+$query = "SELECT * FROM images WHERE itemID=$itemID";
+$imgResult = mysqli_query($conn, $query);
+
 if ($item):
 ?>
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 
 	<p><label>Item ID: <input name="itemID" value="<?= $itemID; ?>" readonly></label></p>
 
@@ -21,6 +25,21 @@ if ($item):
 	<p><label>Price: <input name="price" type="number" value="<?= $item['price']; ?>" step="0.01"></label></p>
 
 	<p><label>Year: <input name="year" type="number" value="<?= $item['year']; ?>"></label></p>
+	
+	<fieldset>
+		<legend>Images</legend>
+		
+		<p>
+			<?php while($img=mysqli_fetch_array($imgResult)) 
+				printf('<img src="../img/items/%s" alt="">', $img['imgName']);
+			?>
+		</p>
+		
+		<input type="file" name="image" accept=".png, .jpg, .jpeg">
+		<br>
+		<label><input type="checkbox" name="isMainPic" value="yes">Main Image</label>
+		<!-- show images that have been uploaded -->
+	</fieldset>
 
   <fieldset>
     <legend>Dimensions</legend>

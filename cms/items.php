@@ -1,6 +1,6 @@
 <?php
 require('../conn/connAntiques.php');
-$query = "SELECT * FROM items";
+$query = "SELECT items.*, imgName FROM items LEFT JOIN images ON mainImgID=imgID";
 $result = mysqli_query($conn, $query);
 ?><!DOCTYPE html>
 <html lang="en-us">
@@ -23,11 +23,19 @@ $result = mysqli_query($conn, $query);
     <ol class="item-listing">
       
       <?php while ($row = mysqli_fetch_array($result)): ?>
-      <li>
-        <h2><a href="item.php?itemID=<?= $row['itemID']; ?>"><?= $row['title']; ?></a></h2>
-        <p>Price: <?= $row['price']; ?><br>Year: <?= $row['year']; ?></p>
-        <p><?= $row['description']; ?></p>
-      </li>
+		  <li>
+			  
+			<h2><a href="item.php?itemID=<?= $row['itemID']; ?>"><?= $row['title']; ?></a></h2>
+			  
+			  <p>
+				<?php if($row['mainImgID'] != 0) printf('<img src="../img/items/%s" alt="">', $row['imgName']); ?> <!-- $row['imageName'] will replace %s -->
+			  </p>
+			  
+			<p>Price: <?= $row['price']; ?><br>Year: <?= $row['year']; ?></p>
+			<p><?= $row['description']; ?></p>
+			  
+		  </li>
+		<br>
       <?php endwhile; ?>
       
     </ol>

@@ -42,3 +42,20 @@ p.error { color: crimson; background-color: lightpink; }
 fieldset {
   margin-bottom: 1em;
 }
+
+fieldset img {
+	height: 100px;
+	width: auto;
+}
+
+.item-listing {
+	padding: 0;
+}
+
+.item-listing img {
+	float: left;
+	height: 100px;
+	width: auto;
+	margin-right: 1em;
+}
+
