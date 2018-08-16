@@ -7,7 +7,7 @@ function dynamicMenuOptions($label, $table, $idColName, $labelColName, $selected
   // import the $conn global variable into the function scope
   global $conn;
   // create a local variable $result with the select query
-  $result = mysqli_query($conn, "SELECT * FROM $table");
+  $result = mysqli_query($conn, "SELECT * FROM $table ORDER BY $labelColName");
   // loop through every row and print an option tag
   printf('<option value="-1">Select %s</option>', $label);
   printf('<option value="0">Add New %s</option>', $label);
