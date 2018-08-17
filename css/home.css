@@ -1,4 +1,3 @@
-#category-grid article,
 #home-slideshow article {
 	position: relative;
 	text-align: center;
@@ -21,31 +20,9 @@
 	padding-right: 1em;
 	margin: 0;
 }
-
+#home-slideshow a {
+	color: inherit;
+}
 .slick-prev:before, .slick-next:before {
 	color: black;
-}
-
-.grid {
-	display: grid;
-}
-#category-grid {
-	grid-gap: 1em;
-	grid-template-columns: repeat(3, 1fr);
-}
-#category-grid img {
-	width: 100%;
-	height: 40vh;
-	object-fit: cover;
-}
-#category-grid h3 {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	text-align: right;
-	background-color: rgba(0,0,0,0.5);
-	color: white;
-	line-height: 2;
-	padding-right: 1em;
-	margin: 0;
 }

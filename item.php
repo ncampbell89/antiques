@@ -33,7 +33,7 @@ $pageTitle = $item ? $item['title'] : 'Not Found';
 <body>
   <div id="container" class="container">
     <header class="page-header">
-      <h1>Antiques Gallery</h1>
+      <h1><a href="index.php">Antiques Gallery</a></h1>
     </header>
 	  
     <article id="item-container">

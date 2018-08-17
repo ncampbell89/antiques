@@ -32,6 +32,7 @@ $pageTitle = 'Welcome';
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css"/>
 
   <link href="css/home.css" rel="stylesheet">
+  <link href="css/image-grid.css" rel="stylesheet">
 </head>
 <body>
   <div id="container" class="container">
@@ -43,17 +44,17 @@ $pageTitle = 'Welcome';
     <section id="home-slideshow" class="slideshow">
       <?php while ($item = mysqli_fetch_array($slidesResult)): ?>
       <article class="item">
-        <h3><?= $item['title']; ?></h3>
+        <h3><a href="item.php?itemID=<?= $item['itemID']; ?>"><?= $item['title']; ?></a></h3>
         <img src="img/items/<?= $item['imageName']; ?>" alt="">
       </article>
       <?php endwhile; ?>
     </section>
 	  
 	<h2>Browse By Category</h2>
-    <section id="category-grid" class="grid">
+    <section id="category-grid" class="image-grid">
       <?php while ($cat = mysqli_fetch_array($categoriesResult)): ?>
       <article class="category">
-        <h3><?= $cat['categoryName']; ?></h3>
+		  <h3><a href="category.php?categoryID=<?= $cat['categoryID']; ?>"><?= $cat['categoryName']; ?></a></h3>
         <img src="img/items/<?= $cat['imageName']; ?>" alt="">
       </article>
       <?php endwhile; ?>
