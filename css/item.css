@@ -1,39 +1,39 @@
 #item-container {
-	display: flex;
-	font-size: 1.2em;
+    display: flex;
+    font-size: 1.2em;
 }
 
 #item-container > aside {
-	flex: 1 1 300px;
-	/* flex grow, flex shrink, flex basis */
+    flex: 1 1 300px;
+    /* flex grow, flex shrink, flex basis */
 }
 
 #item-container > main {
-	flex: 1 1 auto;
-	padding-left: 3em;
-	/* flex grow, flex shrink, flex basis */
+    flex: 1 1 auto;
+    padding-left: 3em;
+    /* flex grow, flex shrink, flex basis */
 }
 
 .slideshow img {
-	max-width: 100%;
+    max-width: 100%;
 }
 
 #item-container h2 {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 #item-container .description {
-	margin-top: 2em 0;
+    margin-top: 2em 0;
 }
 
 .item-info {
-	display: grid;
-	/* 3 columns of the same size */
-	grid-template-columns: repeat(3, 3fr);
-	
-	/* 2 rows that expand to fit the content */
-	grid-template-rows: repeat(2, minmax(2em, max-content));
-	
-	/* fill up the grid column by column, instead of the default row by row. The first two items go in the first column, the 3rd and 4th item go in the second column and so on. */
-	grid-auto-flow: column;
+    display: grid;
+    /* 3 columns of the same size */
+    grid-template-columns: repeat(3, 3fr);
+
+    /* 2 rows that expand to fit the content */
+    grid-template-rows: repeat(2, minmax(2em, max-content));
+
+    /* fill up the grid column by column, instead of the default row by row. The first two items go in the first column, the 3rd and 4th item go in the second column and so on. */
+    grid-auto-flow: column;
 }

@@ -1,6 +1,6 @@
 <?php
 require('../conn/connAntiques.php');
-$query = "SELECT items.*, imgName FROM items LEFT JOIN images ON mainImgID=imgID";
+$query = "SELECT items.*, imageName FROM items LEFT JOIN images ON mainImageID=imageID";
 $result = mysqli_query($conn, $query);
 ?><!DOCTYPE html>
 <html lang="en-us">
@@ -28,7 +28,7 @@ $result = mysqli_query($conn, $query);
 			<h2><a href="item.php?itemID=<?= $row['itemID']; ?>"><?= $row['title']; ?></a></h2>
 			  
 			  <p>
-				<?php if($row['mainImgID'] != 0) printf('<img src="../img/items/%s" alt="">', $row['imgName']); ?> <!-- $row['imageName'] will replace %s -->
+				<?php if($row['mainImageID'] != 0) printf('<img src="../img/items/%s" alt="">', $row['imageName']); ?> <!-- $row['imageName'] will replace %s -->
 			  </p>
 			  
 			<p>Price: <?= $row['price']; ?><br>Year: <?= $row['year']; ?></p>

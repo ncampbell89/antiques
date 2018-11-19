@@ -1,6 +1,17 @@
+#container {
+    padding-bottom: 6rem;
+}
+
+header h1 {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
 #home-slideshow article {
 	position: relative;
 	text-align: center;
+    background-color: #EEE;
 }
 
 #home-slideshow img {
@@ -25,4 +36,10 @@
 }
 .slick-prev:before, .slick-next:before {
 	color: black;
+}
+
+@media (max-width:600px) {
+    header h1, h2, h3 a {
+        font-size: 4vw;
+    }
 }

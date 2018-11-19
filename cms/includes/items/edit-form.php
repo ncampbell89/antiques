@@ -28,13 +28,11 @@ if ($item):
 	
 	<fieldset>
 		<legend>Images</legend>
-		
-		<p>
+
 			<?php while($img=mysqli_fetch_array($imgResult)) 
-				printf('<img src="../img/items/%s" alt="">', $img['imgName']);
+				printf('<img src="img/items/%s" alt="">', $img['imageName']);
 			?>
-		</p>
-		
+
 		<input type="file" name="image" accept=".png, .jpg, .jpeg">
 		<br>
 		<label><input type="checkbox" name="isMainPic" value="yes">Main Image</label>

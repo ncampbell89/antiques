@@ -6,6 +6,7 @@ $result = mysqli_query($conn, $query);
 $category = mysqli_fetch_array($result);
 
 if ($category) {
+	// link the tables 'items' and 'images' together
   $query = "SELECT * FROM items JOIN images ON items.mainImageID=images.imageID WHERE categoryID=$categoryID";
   $itemsResult = mysqli_query($conn, $query);  
 }
@@ -29,23 +30,32 @@ $pageTitle = $category ? "Category: $category[categoryName]" : 'Not Found';
     <header class="page-header">
       <h1><a href="index.php">Antiques Gallery</a></h1>
     </header>
+	  
     <main id="category-container">
-      <?php if ($category): ?>
-        <h2>Items In <?= $category['categoryName']; ?></h2>
-        <section id="items-grid" class="image-grid">
-          <?php if (!$itemsResult) echo mysqli_error($conn); ?>
-          <?php while ($item = mysqli_fetch_array($itemsResult)): ?>
-          <article class="item">
-            <h3><a href="item.php?itemID=<?= $item['itemID']; ?>"><?= $item['title']; ?></a></h3>
-            <img src="img/items/<?= $item['imageName']; ?>" alt="">
-          </article>
-          <?php endwhile; ?>
-        </section>
-      <?php else: ?>
-      <?php if (!$result) echo mysqli_error($conn).'<br>'; ?>
-      <p>Category with ID <?= $categoryID; ?> was not found.</p>
-      <?php endif; ?>
+        <?php if ($category): ?>
+		
+            <h2>Items In <?= $category['categoryName']; ?></h2>
+				<section id="items-grid" class="image-grid">
+					
+				  <?php if ($itemsResult == false) echo mysqli_error($conn); ?> <!--if the query result does not equal to this query-->
+										
+				  <?php while ($item = mysqli_fetch_array($itemsResult)): ?>
+					  <article class="item">
+						<h3><a href="item.php?itemID=<?= $item['itemID']; ?>"><?= $item['title']; ?></a></h3>
+						<img src="img/items/<?= $item['imageName']; ?>" alt="">
+					  </article>
+				  <?php endwhile; ?>			
+					
+				</section>
+        <?php else: ?><!-- else for ($category) -->
+		<!-- if there is no valid category, do this -->
+			<?php if ($result == false) echo mysqli_error($conn).'<br>'; ?><!--if there is something wrong with the query, display the error -->
+		
+			    <p>Category with ID <?= $categoryID; ?> was not found.</p>
+		
+		<?php endif; ?><!-- end if($category) -->
     </main>
+	  
   </div>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
