@@ -37,7 +37,7 @@ $pageTitle = 'Welcome';
 <body>
   <div id="container" class="container">
     <header class="page-header">
-      <h1>Antiques Gallery</h1>
+      <h1>Welcome to the Antiques Gallery</h1>
     </header>
 	  
     <h2>Our Top Items</h2>

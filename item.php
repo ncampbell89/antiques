@@ -1,6 +1,6 @@
 <?php
 require_once('conn/connAntiques.php');
-$itemID = intval($_GET['itemID']);
+$itemID = intval($_GET['itemID']); // from the URL
 $query = "
   SELECT * FROM items
   LEFT JOIN dimensions ON items.itemID=dimensions.itemID
@@ -22,13 +22,14 @@ $pageTitle = $item ? $item['title'] : 'Not Found';
 <head>   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Antiques Website | <?php echo $pageTitle; ?></title><!-- Latest compiled and minified CSS -->
+  <title>Antiques Website | <?php echo $pageTitle; ?></title>
+    <link href="css/item.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-  <link href="css/item.css" rel="stylesheet">
 </head>
 <body>
   <div id="container" class="container">
@@ -39,12 +40,14 @@ $pageTitle = $item ? $item['title'] : 'Not Found';
     <article id="item-container">
       <?php if ($item): ?>
       <aside id="item-slideshow" class="slideshow">
-        <?php if (mysqli_num_rows($imgResult)): ?>
+		  
+        <?php if (mysqli_num_rows($imgResult)): ?> <!-- If there are images -->
 			<?php while ($img = mysqli_fetch_array($imgResult)): ?>
-			<img src="img/items/<?= $img['imageName']; ?>" alt="">
-		<?php endwhile; else: // if no images, then add a placeholder image ?>
+				<img src="img/items/<?= $img['imageName']; ?>" alt="">
+			<?php endwhile; else: // if no images, then add a placeholder image ?>
         <!-- placeholder image -->
         <?php endif; // end if has images ?>
+		  
       </aside>
 		
       <main>
@@ -57,7 +60,8 @@ $pageTitle = $item ? $item['title'] : 'Not Found';
 			<strong><?= $item['isAvailable'] == 1 ? 'For Sale' : 'Sold'; ?></strong>
 			  <br>
 			<strong>Category: </strong><a href="category.php?categoryID=<?= $item['categoryID']; ?>"><?= $item['categoryName']; ?></a>
-		  </p>  
+		  </p> 
+		  
 		  <p class="description"><?= nl2br(htmlspecialchars($item['description'])); ?></p>
 		  <!-- nl2br() new line to break -->
 		  
@@ -89,8 +93,9 @@ $pageTitle = $item ? $item['title'] : 'Not Found';
 		
       <?php else: // if not item ?>
 		<?php if(!$result) echo mysqli_error($conn).'<br>'; ?>
-      <p>Item with ID <?= $itemID; ?> was not found.</p>
-      <?php endif; // end if item ?>
+      		<p>Item with ID <?= $itemID; ?> was not found.</p>
+        <?php endif; // end if item ?>
+		
     </article>
   </div>
   <!-- Latest compiled and minified JavaScript -->
